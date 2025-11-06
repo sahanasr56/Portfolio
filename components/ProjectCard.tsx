@@ -1,3 +1,6 @@
+"use client";
+import { motion } from "framer-motion";
+
 interface Project {
     title: string;
     description: string;
@@ -8,7 +11,14 @@ interface Project {
 
 export default function ProjectCard({ title, description, github, demo, tech}: Project) {
     return (
-        <div className="p-6 bg-white shadow-md rounded-xl hover: shadow-lg transition">
+        <motion.div 
+            className="p-6 bg-white shadow-md rounded-xl hover: shadow-lg transition"
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 50}}
+            whileInView={{ opacity: 1, y: 0}}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+        >
             <h2 className="text-xl font-bold mb-2">{title}</h2>
             <p className="text-grey-600 mb-3">{description}</p>
             <div>
@@ -22,6 +32,6 @@ export default function ProjectCard({ title, description, github, demo, tech}: P
                 <a href={github} target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href={demo} target="_blank" rel="noopener noreferrer">Live Demo</a>
             </div>
-        </div>
+        </motion.div>
     );
 }
